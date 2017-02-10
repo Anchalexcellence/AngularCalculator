@@ -10,8 +10,6 @@ app.controller("myCtrl", function ($scope)
     $scope.lastOperation = null;
     $scope.common = "0";
 
-
-
     $scope.keyevent = function (e) {
 
         if (e.key == 1 || e.key == 2 || e.key == 3 || e.key == 4 || e.key == 5 || e.key == 6 || e.key == 7 || e.key == 8 || e.key == 9 || e.key == 0 || e.key == ".")
@@ -61,19 +59,17 @@ app.controller("myCtrl", function ($scope)
     $scope.updateOutput = function (btn, evtType)
     {
 
-
-        if ($scope.output == "0" || $scope.nextNumber)
+    if ($scope.output == "0" || $scope.nextNumber)
         {
             $scope.output = btn;
             $scope.nextNumber = false;
-            console.log(">>>>>>>>>>>>>>>>>>output", $scope.output)
+           
         }
         else
         {
             $scope.output = $scope.output + String(btn);
-            console.log(">>>>>>>>>>>>>>>>>>output1", $scope.output)
+          
         }
-       
 
         $scope.storedValue = parseFloat($scope.output);
         $scope.common = $scope.storedValue;
@@ -84,7 +80,6 @@ app.controller("myCtrl", function ($scope)
 
     $scope.abc = function ()
     {
-
 
         if ($scope.storedValue)
         {
@@ -118,8 +113,6 @@ app.controller("myCtrl", function ($scope)
 
     $scope.add = function (evtType)
     {
-
-
         $scope.abc()
         $scope.operationToken = "+";
         setOutput(String($scope.runningTotal));
@@ -147,8 +140,6 @@ app.controller("myCtrl", function ($scope)
         }
     };
 
-
-
     $scope.multiply = function (evtType)
     {
         $scope.abc()
@@ -166,8 +157,7 @@ app.controller("myCtrl", function ($scope)
 
     $scope.divide = function (evtType)
     {
-
-        $scope.abc()
+         $scope.abc()
         $scope.operationToken = "/";
         $scope.common = $scope.operationToken;
         setOutput(String($scope.runningTotal));
@@ -180,12 +170,9 @@ app.controller("myCtrl", function ($scope)
         }
     };
 
-
     $scope.modulus = function (evtType)
     {
-
         $scope.abc()
-
         $scope.operationToken = "%";
         $scope.common = $scope.operationToken;
         setOutput(String($scope.runningTotal));
