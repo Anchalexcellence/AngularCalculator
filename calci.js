@@ -1,5 +1,5 @@
 var app = angular.module("myApp", [])
-app.controller("myCtrl", function($scope)
+app.controller("myCtrl", function ($scope)
 {
     $scope.output = "0";
     $scope.nextNumber = true;
@@ -8,58 +8,57 @@ app.controller("myCtrl", function($scope)
     $scope.runningTotal = null;
     $scope.storedValue = null;
     $scope.lastOperation = null;
-    $scope.common="0";
-    
+    $scope.common = "0";
 
 
-    $scope.keyevent=function(e){
 
-        //console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>aaaaaa",e.key);
-        if(e.key==1 || e.key==2 ||  e.key==3 ||  e.key==4 ||  e.key==5 ||  e.key==6 ||  e.key==7 ||  e.key==8 ||  e.key==9 || e.key==0 ||  e.key=="." )
+    $scope.keyevent = function (e) {
+
+        if (e.key == 1 || e.key == 2 || e.key == 3 || e.key == 4 || e.key == 5 || e.key == 6 || e.key == 7 || e.key == 8 || e.key == 9 || e.key == 0 || e.key == ".")
         {
-            var abc=e.key;
-            $scope.name="keypress";
+            var abc = e.key;
+            $scope.name = "keypress";
             e.preventDefault();
             $scope.updateOutput(abc)
         }
 
-        else if(e.key=="+")
+        else if (e.key == "+")
         {
             e.preventDefault();
             $scope.add()
         }
-        else if(e.key=="-")
+        else if (e.key == "-")
         {
             e.preventDefault();
             $scope.subtract()
         }
-        else if(e.key=="*")
+        else if (e.key == "*")
         {
             e.preventDefault();
             $scope.multiply()
         }
-        else if(e.key=="/")
+        else if (e.key == "/")
         {
             e.preventDefault();
             $scope.divide()
         }
-        else if(e.key=="Enter")
+        else if (e.key == "Enter")
         {
             $scope.calculate()
         }
-        else if(e.key=="Backspace")
+        else if (e.key == "Backspace")
         {
             $scope.clear()
         }
 
-        else{
+        else {
             alert("only numeric values are allowed");
             e.preventDefault();
         }
-    }   
+    }
 
 
-    $scope.updateOutput = function(btn,evtType)
+    $scope.updateOutput = function (btn, evtType)
     {
 
 
@@ -67,17 +66,14 @@ app.controller("myCtrl", function($scope)
         {
             $scope.output = btn;
             $scope.nextNumber = false;
-            console.log(">>>>>>>>>>>>>>>>>>output",$scope.output)
+            console.log(">>>>>>>>>>>>>>>>>>output", $scope.output)
         }
         else
         {
             $scope.output = $scope.output + String(btn);
-            console.log(">>>>>>>>>>>>>>>>>>output1",$scope.output)
+            console.log(">>>>>>>>>>>>>>>>>>output1", $scope.output)
         }
-        /* if(!($scope.name=="keypress")) {
-         $scope.storedValue = parseFloat($scope.output);
-         $scope.common = $scope.storedValue;
-         }*/
+       
 
         $scope.storedValue = parseFloat($scope.output);
         $scope.common = $scope.storedValue;
@@ -86,7 +82,7 @@ app.controller("myCtrl", function($scope)
         }
     };
 
-    $scope.abc=function()
+    $scope.abc = function ()
     {
 
 
@@ -120,34 +116,32 @@ app.controller("myCtrl", function($scope)
         }
     };
 
-    $scope.add = function(evtType)
+    $scope.add = function (evtType)
     {
 
 
         $scope.abc()
         $scope.operationToken = "+";
-
-        console.log(">>>>>>>>>>>>>>>>>>>common",$scope.common);
         setOutput(String($scope.runningTotal));
         $scope.storedOperation = "ADD";
         $scope.nextNumber = true;
         $scope.storedValue = null;
-        if (evtType === 'btnClick') 
+        if (evtType === 'btnClick')
         {
             document.querySelector("#txtData").focus();
         }
     };
 
-    $scope.subtract = function(evtType)
+    $scope.subtract = function (evtType)
     {
         $scope.abc()
         $scope.operationToken = "-";
-        $scope.common=$scope.operationToken;
+        $scope.common = $scope.operationToken;
         setOutput(String($scope.runningTotal));
         $scope.storedOperation = "SUBTRACT";
         $scope.nextNumber = true;
         $scope.storedValue = null;
-        if (evtType === 'btnClick') 
+        if (evtType === 'btnClick')
         {
             document.querySelector("#txtData").focus();
         }
@@ -155,57 +149,57 @@ app.controller("myCtrl", function($scope)
 
 
 
-    $scope.multiply = function(evtType)
+    $scope.multiply = function (evtType)
     {
         $scope.abc()
         $scope.operationToken = "*";
-        $scope.common=$scope.operationToken;
+        $scope.common = $scope.operationToken;
         setOutput(String($scope.runningTotal));
         $scope.storedOperation = "MULTIPLY";
         $scope.nextNumber = true;
         $scope.storedValue = null;
-        if (evtType === 'btnClick') 
+        if (evtType === 'btnClick')
         {
             document.querySelector("#txtData").focus();
         }
     };
 
-    $scope.divide = function(evtType)
+    $scope.divide = function (evtType)
     {
 
         $scope.abc()
         $scope.operationToken = "/";
-        $scope.common=$scope.operationToken;
+        $scope.common = $scope.operationToken;
         setOutput(String($scope.runningTotal));
         $scope.storedOperation = "DIVIDE";
         $scope.nextNumber = true;
         $scope.storedValue = null;
-        if (evtType === 'btnClick') 
+        if (evtType === 'btnClick')
         {
             document.querySelector("#txtData").focus();
         }
     };
 
 
-    $scope.modulus = function(evtType)
+    $scope.modulus = function (evtType)
     {
 
         $scope.abc()
 
         $scope.operationToken = "%";
-        $scope.common=$scope.operationToken;
+        $scope.common = $scope.operationToken;
         setOutput(String($scope.runningTotal));
         $scope.storedOperation = "MODULUS";
         $scope.nextNumber = true;
         $scope.storedValue = null;
-        if (evtType === 'btnClick') 
+        if (evtType === 'btnClick')
         {
             document.querySelector("#txtData").focus();
         }
     };
 
 
-    $scope.calculate = function(evtType)
+    $scope.calculate = function (evtType)
     {
         if (!$scope.nextNumber)
         {
@@ -216,39 +210,39 @@ app.controller("myCtrl", function($scope)
         if ($scope.storedOperation == "ADD")
         {
             $scope.runningTotal += $scope.storedValue;
-            $scope.common=$scope.runningTotal;
+            $scope.common = $scope.runningTotal;
         }
         else if ($scope.storedOperation == "SUBTRACT")
         {
             $scope.runningTotal -= $scope.storedValue;
-            $scope.common=$scope.runningTotal;
+            $scope.common = $scope.runningTotal;
             $scope.lastOperation = "SUBTRACT";
         }
         else if ($scope.storedOperation == "MULTIPLY")
         {
             $scope.runningTotal *= $scope.storedValue;
-            $scope.common=$scope.runningTotal;
+            $scope.common = $scope.runningTotal;
             $scope.lastOperation = "MULTIPLY";
         }
         else if ($scope.storedOperation == "DIVIDE")
         {
-            if($scope.storedValue==0)
+            if ($scope.storedValue == 0)
             {
                 alert("number can't be divide by zero");
 
-                $scope.common= $scope.runningTotal;
+                $scope.common = $scope.runningTotal;
             }
             else
             {
                 $scope.runningTotal /= $scope.storedValue;
-                $scope.common=$scope.runningTotal;
+                $scope.common = $scope.runningTotal;
                 $scope.lastOperation = "DIVIDE";
             }
         }
         else if ($scope.storedOperation == "MODULUS")
         {
             $scope.runningTotal %= $scope.storedValue;
-            $scope.common=$scope.runningTotal;
+            $scope.common = $scope.runningTotal;
             $scope.lastOperation = "MODULUS";
         }
 
@@ -256,30 +250,30 @@ app.controller("myCtrl", function($scope)
         $scope.operationToken = null;
         $scope.storedOperation = null;
         $scope.storedValue = null;
-        if (evtType === 'btnClick') 
+        if (evtType === 'btnClick')
         {
             document.querySelector("#txtData").focus();
         }
     };
 
 
-    $scope.clear = function(evtType)
+    $scope.clear = function (evtType)
     {
         $scope.runningTotal = null;
         $scope.storedValue = null;
         $scope.storedOperation = null;
-        $scope.common=null;
+        $scope.common = null;
         setOutput("0");
-        if (evtType === 'btnClick') 
+        if (evtType === 'btnClick')
         {
             document.querySelector("#txtData").focus();
         }
     };
 
-    setOutput = function(outputString)
+    setOutput = function (outputString)
     {
         $scope.output = outputString;
-        $scope.common=$scope.output
+        $scope.common = $scope.output
         $scope.nextNumber = true;
     };
 });
